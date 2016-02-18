@@ -80,13 +80,15 @@ public struct PagedArray<T> {
     
     /// Returns the page index for an element index
     public func pageNumberForIndex(index: Index) -> Int {
-        assert(index >= startIndex && index < endIndex, "Index out of bounds")
+        // causes issues with zero sized arrays
+        //assert(index >= startIndex && index < endIndex, "Index out of bounds")
         return index/pageSize+startPageIndex
     }
     
     /// Returns a `Range` corresponding to the indexes for a page
     public func indexes(pageIndex: Int) -> Range<Index> {
-        assert(pageIndex >= startPageIndex && pageIndex <= lastPageIndex, "Page index out of bounds")
+        // causes issues with zero sized arrays
+        //assert(pageIndex >= startPageIndex && pageIndex <= lastPageIndex, "Page index out of bounds")
         
         let startIndex: Index = (pageIndex-startPageIndex)*pageSize
         let endIndex: Index
